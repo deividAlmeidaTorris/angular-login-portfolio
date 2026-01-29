@@ -17,10 +17,15 @@
 
         <small
           *ngIf="
-            loginForm.get('email')?.touched && loginForm.get('email')?.invalid
+            loginForm.get('email')?.errors && loginForm.get('email')?.touched
           "
         >
-          Email inválido
+          <span *ngIf="loginForm.get('email')?.errors?.['required']">
+            O email é obrigatório
+          </span>
+          <span *ngIf="loginForm.get('email')?.errors?.['email']">
+            Digite um email válido
+          </span>
         </small>
       </div>
 
@@ -49,11 +54,16 @@
 
         <small
           *ngIf="
-            loginForm.get('password')?.touched &&
-            loginForm.get('password')?.invalid
+            loginForm.get('password')?.errors &&
+            loginForm.get('password')?.touched
           "
         >
-          Senha deve ter no mínimo 6 caracteres
+          <span *ngIf="loginForm.get('password')?.errors?.['required']">
+            A senha é obrigatória
+          </span>
+          <span *ngIf="loginForm.get('password')?.errors?.['minlength']">
+            A senha deve ter no mínimo 6 caracteres
+          </span>
         </small>
       </div>
       <div *ngIf="errorMessage" class="error-box">
