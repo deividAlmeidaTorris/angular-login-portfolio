@@ -9,6 +9,9 @@ import { AuthService } from '../../services/auth.service';
   styleUrl: './dashboard.component.css',
 })
 export class DashboardComponent {
+  goToAddUser() {
+    throw new Error('Method not implemented.');
+  }
   constructor(
     private router: Router,
     private authService: AuthService,
@@ -17,5 +20,8 @@ export class DashboardComponent {
   logout() {
     this.authService.logout();
     this.router.navigate(['/login']);
+  }
+  goToListUsers() {
+    this.router.navigate(['/users-list']);
   }
 }
