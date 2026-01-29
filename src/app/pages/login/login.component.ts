@@ -6,6 +6,8 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,16 +17,22 @@ import {
   styleUrl: './login.component.css',
 })
 export class LoginComponent {
-  showPassword = false;
-
   loginForm: FormGroup;
+  loading = false;
+  showPassword = false;
+  errorMessage = '';
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router,
+  ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
+
   togglePassword() {
     this.showPassword = !this.showPassword;
   }
@@ -35,6 +43,21 @@ export class LoginComponent {
       return;
     }
 
-    console.log('Dados do login:', this.loginForm.value);
+    this.loading = true;
+    this.errorMessage = '';
+
+    setTimeout(() => {
+      const { email, password } = this.loginForm.value;
+
+      const success = this.authService.login(email, password);
+
+      if (success) {
+        this.router.navigate(['/dashboard']);
+      } else {
+        this.errorMessage = 'Email ou senha inválidos';
+      }
+
+      this.loading = false;
+    }, 1500);
   }
 }

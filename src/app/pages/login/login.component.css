@@ -84,3 +84,11 @@ small {
   cursor: pointer;
   font-size: 18px;
 }
+.error-box {
+  background: #fee2e2;
+  color: #b91c1c;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  text-align: center;
+}
