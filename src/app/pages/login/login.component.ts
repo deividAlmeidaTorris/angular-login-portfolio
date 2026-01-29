@@ -21,6 +21,7 @@ export class LoginComponent {
   loading = false;
   showPassword = false;
   errorMessage = '';
+  isLoading = false;
 
   constructor(
     private fb: FormBuilder,
