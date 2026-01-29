@@ -9,7 +9,10 @@
         <input
           type="email"
           formControlName="email"
-          placeholder="Digite seu email"
+          class="input"
+          [class.input-error]="
+            loginForm.get('email')?.invalid && loginForm.get('email')?.touched
+          "
         />
 
         <small
@@ -26,9 +29,13 @@
 
         <div class="password-wrapper">
           <input
-            [type]="showPassword ? 'text' : 'password'"
+            type="password"
             formControlName="password"
-            placeholder="Digite sua senha"
+            class="input"
+            [class.input-error]="
+              loginForm.get('password')?.invalid &&
+              loginForm.get('password')?.touched
+            "
           />
 
           <button

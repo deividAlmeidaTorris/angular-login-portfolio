@@ -92,3 +92,22 @@ small {
   margin-bottom: 12px;
   text-align: center;
 }
+/* Estilo padrão do input */
+.input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+/* Quando o input está em foco */
+.input:focus {
+  border-color: #3b82f6;
+  outline: none;
+}
+
+/* Quando existe erro */
+.input-error {
+  border-color: #ef4444;
+}
